@@ -1,57 +1,193 @@
--- Create Database
-CREATE DATABASE EcommerceDB;
-USE EcommerceDB;
+-- Step 1: Create Database
+CREATE DATABASE ecommerce_db;
+USE ecommerce_db;
 
--- Create Customer Table
+-- Step 2: Create Customer Table
 CREATE TABLE Customer (
-    Customer_ID INT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) UNIQUE,
-    Phone VARCHAR(15)
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(15) UNIQUE
 );
 
--- Create Category Table
-CREATE TABLE Category (
-    Category_ID INT PRIMARY KEY,
-    Category_Name VARCHAR(100) NOT NULL UNIQUE
+-- Step 3: Create Address Table
+CREATE TABLE Address (
+    address_id INT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    address_line VARCHAR(200) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    pincode VARCHAR(10) NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
+        ON DELETE CASCADE
 );
 
--- Create Seller Table
+-- Step 4: Create Seller Table
 CREATE TABLE Seller (
-    Seller_ID INT PRIMARY KEY,
-    Seller_Name VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) UNIQUE
+    seller_id INT PRIMARY KEY,
+    seller_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(15) UNIQUE
 );
 
--- Create Product Table
+-- Step 5: Create Category Table
+CREATE TABLE Category (
+    category_id INT PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Step 6: Create Product Table
 CREATE TABLE Product (
-    Product_ID INT PRIMARY KEY,
-    Product_Name VARCHAR(100) NOT NULL,
-    Price DECIMAL(10,2),
-    Stock INT,
-    Category_ID INT,
-    Seller_ID INT,
-    FOREIGN KEY (Category_ID)
-        REFERENCES Category(Category_ID)
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    category_id INT,
+    seller_id INT,
+    FOREIGN KEY (category_id) REFERENCES Category(category_id)
         ON DELETE SET NULL,
-    FOREIGN KEY (Seller_ID)
-        REFERENCES Seller(Seller_ID)
+    FOREIGN KEY (seller_id) REFERENCES Seller(seller_id)
         ON DELETE SET NULL
 );
 
--- Sample Data Insertion
-INSERT INTO Customer
-VALUES (1, 'Sahil Raj', 'sahil@gmail.com', '9876543210');
+-- Step 7: Create Product_Details Table
+CREATE TABLE Product_Details (
+    product_id INT PRIMARY KEY,
+    brand VARCHAR(100),
+    description VARCHAR(255),
+    stock INT NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES Product(product_id)
+        ON DELETE CASCADE
+);
 
-INSERT INTO Category
-VALUES (1, 'Electronics');
+-- Step 8: Create Orders Table
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_date DATE NOT NULL,
+    order_status VARCHAR(30) NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
+        ON DELETE CASCADE
+);
 
-INSERT INTO Seller
-VALUES (1, 'Tech Store', 'tech@gmail.com');
+-- Step 9: Create OrderItem Table
+CREATE TABLE OrderItem (
+    order_id INT,
+    product_id INT,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    PRIMARY KEY (order_id, product_id),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES Product(product_id)
+        ON DELETE CASCADE
+);
 
-INSERT INTO Product
-VALUES (101, 'Laptop', 65000, 10, 1, 1);
+-- Step 10: Create Payment Table
+CREATE TABLE Payment (
+    payment_id INT PRIMARY KEY,
+    order_id INT NOT NULL UNIQUE,
+    payment_method VARCHAR(30) NOT NULL,
+    payment_status VARCHAR(30) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+        ON DELETE CASCADE
+);
 
--- Referential Integrity Test
--- Expected Output: Foreign Key constraint error because Category_ID = 99 does not exist.
--- INSERT INTO Product VALUES (102, 'Mobile', 25000, 20, 99, 1);
+-- Step 11: Create Delivery Table
+CREATE TABLE Delivery (
+    delivery_id INT PRIMARY KEY,
+    order_id INT NOT NULL UNIQUE,
+    delivery_address_id INT,
+    delivery_date DATE,
+    delivery_status VARCHAR(30),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (delivery_address_id) REFERENCES Address(address_id)
+        ON DELETE SET NULL
+);
+
+-- Insert Sample Data
+INSERT INTO Customer VALUES
+(1, 'Rahul Sharma', 'rahul@gmail.com', '9876543210'),
+(2, 'Priya Singh', 'priya@gmail.com', '9876543211'),
+(3, 'Aman Verma', 'aman@gmail.com', '9876543212');
+
+INSERT INTO Address VALUES
+(101, 1, '12 MG Road', 'Lucknow', 'Uttar Pradesh', '226001'),
+(102, 2, '45 Gomti Nagar', 'Lucknow', 'Uttar Pradesh', '226010'),
+(103, 3, '21 Civil Lines', 'Prayagraj', 'Uttar Pradesh', '211001');
+
+INSERT INTO Seller VALUES
+(201, 'Tech World', 'techworld@gmail.com', '9000000001'),
+(202, 'Smart Store', 'smartstore@gmail.com', '9000000002');
+
+INSERT INTO Category VALUES
+(301, 'Electronics'),
+(302, 'Books'),
+(303, 'Clothing');
+
+INSERT INTO Product VALUES
+(401, 'Laptop', 55000.00, 301, 201),
+(402, 'Database Book', 750.00, 302, 202),
+(403, 'T-Shirt', 599.00, 303, 201);
+
+INSERT INTO Product_Details VALUES
+(401, 'HP', 'HP Laptop with 16GB RAM', 20),
+(402, 'Pearson', 'Database Management Systems Book', 50),
+(403, 'Puma', 'Cotton T-Shirt', 30);
+
+INSERT INTO Orders VALUES
+(501, 1, '2026-08-20', 'Confirmed'),
+(502, 2, '2026-08-21', 'Shipped');
+
+INSERT INTO OrderItem VALUES
+(501, 401, 1, 55000.00),
+(501, 402, 2, 750.00),
+(502, 403, 1, 599.00);
+
+INSERT INTO Payment VALUES
+(601, 501, 'UPI', 'Paid', 56500.00),
+(602, 502, 'Card', 'Paid', 599.00);
+
+INSERT INTO Delivery VALUES
+(701, 501, 101, '2026-08-25', 'Delivered'),
+(702, 502, 102, '2026-08-26', 'Out for Delivery');
+
+-- Display the Tables
+SELECT * FROM Customer;
+SELECT * FROM Address;
+SELECT * FROM Seller;
+SELECT * FROM Category;
+SELECT * FROM Product;
+SELECT * FROM Product_Details;
+SELECT * FROM Orders;
+SELECT * FROM OrderItem;
+SELECT * FROM Payment;
+SELECT * FROM Delivery;
+
+-- Constraint Demonstrations
+-- A. Referential Integrity Violation
+-- Example 1 (Invalid Customer):
+-- INSERT INTO Orders VALUES (503, 99, '2026-08-22', 'Confirmed');
+
+-- Example 2 (Invalid Product):
+-- INSERT INTO OrderItem VALUES (501, 999, 1, 1000.00);
+
+-- Example 3 (Invalid Address):
+-- INSERT INTO Address VALUES (104, 999, 'ABC Street', 'Lucknow', 'Uttar Pradesh', '226001');
+
+-- B. ON DELETE CASCADE
+-- DELETE FROM Customer WHERE customer_id = 1;
+
+-- C. ON DELETE SET NULL
+-- Query 1 (Seller deletion):
+-- DELETE FROM Seller WHERE seller_id = 201;
+
+-- Query 2 (Category deletion):
+-- DELETE FROM Category WHERE category_id = 301;
+
+-- D. NOT NULL Constraint
+-- INSERT INTO Customer VALUES (4, NULL, 'test@gmail.com', '9000000003');
+
+-- E. UNIQUE Constraint
+-- INSERT INTO Customer VALUES (5, 'Test User', 'rahul@gmail.com', '9000000005');

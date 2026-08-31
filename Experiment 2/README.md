@@ -1,80 +1,51 @@
 # Experiment 2: Convert ER Diagram into Relational Schema
 
 ## Aim
-To convert the designed ER diagram into a relational schema and implement it using MySQL.
+To convert the ER diagram of an Indian e-commerce platform into a relational schema and implement it using MySQL with appropriate constraints (Primary Key, Foreign Key, `NOT NULL`, `UNIQUE`, `ON DELETE CASCADE`, and `ON DELETE SET NULL`). Also, to insert sample data and demonstrate referential integrity violations.
+
+## Relational Schema
+1. **Customer** (`customer_id`, `customer_name`, `email`, `phone`)
+2. **Address** (`address_id`, `customer_id`, `address_line`, `city`, `state`, `pincode`)
+3. **Seller** (`seller_id`, `seller_name`, `email`, `phone`)
+4. **Category** (`category_id`, `category_name`)
+5. **Product** (`product_id`, `product_name`, `price`, `category_id`, `seller_id`)
+6. **Product_Details** (`product_id`, `brand`, `description`, `stock`)
+7. **Orders** (`order_id`, `customer_id`, `order_date`, `order_status`)
+8. **OrderItem** (`order_id`, `product_id`, `quantity`, `price`)
+9. **Payment** (`payment_id`, `order_id`, `payment_method`, `payment_status`, `amount`)
+10. **Delivery** (`delivery_id`, `order_id`, `delivery_address_id`, `delivery_date`, `delivery_status`)
 
 ## SQL Commands
 
-```sql
-CREATE DATABASE EcommerceDB;
-USE EcommerceDB;
+For the full setup, table creations, sample data insertion and constraint demonstration queries please refer to the `schema.sql` file in this directory. The SQL queries include the following tables:
+- `Customer`
+- `Address`
+- `Seller`
+- `Category`
+- `Product`
+- `Product_Details`
+- `Orders`
+- `OrderItem`
+- `Payment`
+- `Delivery`
 
-CREATE TABLE Customer (
-    Customer_ID INT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) UNIQUE,
-    Phone VARCHAR(15)
-);
+## Constraint Demonstrations
 
-CREATE TABLE Category (
-    Category_ID INT PRIMARY KEY,
-    Category_Name VARCHAR(100) NOT NULL UNIQUE
-);
+The `schema.sql` file includes queries to test various constraints:
 
-CREATE TABLE Seller (
-    Seller_ID INT PRIMARY KEY,
-    Seller_Name VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) UNIQUE
-);
+### A. Referential Integrity Violation
+- **Invalid Customer**: Attempting to insert an order with an invalid customer ID fails parent key constraint.
+- **Invalid Product**: Attempting to add an order item for a non-existent product ID fails parent key constraint.
+- **Invalid Address**: Attempting to add an address for a non-existent customer ID fails parent key constraint.
 
-CREATE TABLE Product (
-    Product_ID INT PRIMARY KEY,
-    Product_Name VARCHAR(100) NOT NULL,
-    Price DECIMAL(10,2),
-    Stock INT,
-    Category_ID INT,
-    Seller_ID INT,
-    FOREIGN KEY (Category_ID)
-        REFERENCES Category(Category_ID)
-        ON DELETE SET NULL,
-    FOREIGN KEY (Seller_ID)
-        REFERENCES Seller(Seller_ID)
-        ON DELETE SET NULL
-);
-```
+### B. ON DELETE CASCADE
+- **Customer Deletion**: Deleting a customer (e.g. `customer_id = 1`) automatically deletes all their addresses and orders, because the `Address` and `Orders` tables use `ON DELETE CASCADE` on their foreign keys referencing `Customer(customer_id)`.
 
-## Sample Data
+### C. ON DELETE SET NULL
+- **Seller / Category Deletion**: Deleting a seller or a category will set the `seller_id` or `category_id` to `NULL` in the `Product` table instead of deleting the products themselves.
 
-```sql
-INSERT INTO Customer
-VALUES (1, 'Sahil Raj', 'sahil@gmail.com', '9876543210');
+### D. NOT NULL Constraint
+- Attempting to insert `NULL` into a `NOT NULL` column (e.g., `customer_name`) fails.
 
-INSERT INTO Category
-VALUES (1, 'Electronics');
-
-INSERT INTO Seller
-VALUES (1, 'Tech Store', 'tech@gmail.com');
-
-INSERT INTO Product
-VALUES (101, 'Laptop', 65000, 10, 1, 1);
-```
-
-## Referential Integrity Test
-
-```sql
-INSERT INTO Product
-VALUES (102, 'Mobile', 25000, 20, 99, 1);
-```
-* **Expected Output**: Foreign Key constraint error because `Category_ID = 99` does not exist.
-
-## Important Constraints Used
-
-* **PRIMARY KEY** &rarr; uniquely identifies each record.
-* **FOREIGN KEY** &rarr; maintains relationship between tables.
-* **NOT NULL** &rarr; prevents empty values.
-* **UNIQUE** &rarr; prevents duplicate values.
-* **ON DELETE CASCADE** &rarr; automatically deletes related records.
-* **ON DELETE SET NULL** &rarr; sets the foreign-key value to NULL when the parent record is deleted.
-
-## Result
-The ER diagram was successfully converted into relational tables and implemented in MySQL with required constraints and referential integrity.
+### E. UNIQUE Constraint
+- Attempting to insert duplicate values into columns defined as `UNIQUE` (e.g., `email` in `Customer`) fails.
