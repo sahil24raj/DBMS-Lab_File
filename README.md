@@ -4,8 +4,8 @@ This repository contains the Database Management Systems (DBMS) Lab experiments.
 
 ## Experiments List
 
-- **[Experiment 1: Design an ER Diagram for Indian E-Commerce Platform](Experiment%201/)**
-- **[Experiment 2: Convert ER Diagram into Relational Schema](Experiment%202/)**
+- **[Experiment 1: Design an ER Diagram for Indian E-Commerce Platform](Experiment%201/)** ([experiment1.md](experiment1.md))
+- **[Experiment 2: Convert ER Diagram into Relational Schema](Experiment%202/)** ([experiment2.md](experiment2.md))
 - **[Experiment 3: SQL Queries - Selection, Projection, Aggregations, GROUP BY, HAVING, CASE, and JOINs](Experiment%203/)** ([experiment3.md](experiment3.md))
 - **[Experiment 4: Joins, Correlated Subqueries, EXISTS, Set Operations, and EXPLAIN](Experiment%204/)** ([experiment4.md](experiment4.md))
 - **[Experiment 5: SQL Views and Recursive CTEs for Hierarchy](Experiment%205/)** ([experiment5.md](experiment5.md))
