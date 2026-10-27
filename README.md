@@ -10,6 +10,10 @@ This repository contains the Database Management Systems (DBMS) Lab experiments.
 - **[Experiment 4: Joins, Correlated Subqueries, EXISTS, Set Operations, and EXPLAIN](Experiment%204/experiment4.md)**
 - **[Experiment 5: SQL Views and Recursive CTEs for Hierarchy](Experiment%205/experiment5.md)**
 - **[Experiment 6: Stored Procedures, Triggers, and Error Handling](Experiment%206/experiment6.md)**
+- **[Experiment 7: Normalization from UNF to 3NF and BCNF, Lossless Join & Dependency Preservation](Experiment%207/experiment7.md)**
+- **[Experiment 8: Banking Transactions, Partial Failures, and Concurrency Control](Experiment%208/experiment8.md)**
+- **[Experiment 9: Railway Booking Indexing & Benchmarking (5,000+ Records)](Experiment%209/experiment9.md)**
+- **[Experiment 10: Query Optimization, EXPLAIN Analysis, and Performance Tuning (10,000+ Rows)](Experiment%2010/experiment10.md)**
 
 ---
 
@@ -37,3 +41,19 @@ This repository contains the Database Management Systems (DBMS) Lab experiments.
 ### [Experiment 6: Stored Procedures, Triggers, and Error Handling](Experiment%206/experiment6.md)
 - **Aim**: To create a stored procedure transfer_employee(emp_id, new_dept_id) with validation and error handling, implement triggers for salary validation and audit logging, and test important edge cases.
 - **Output**: [experiment6.md](Experiment%206/experiment6.md) and [queries.sql](Experiment%206/queries.sql).
+
+### [Experiment 7: Normalization from UNF to 3NF and BCNF, Lossless Join & Dependency Preservation](Experiment%207/experiment7.md)
+- **Aim**: Given a denormalized Sales table, identify functional dependencies and normalize step-by-step from UNF to 3NF and BCNF. Verify lossless join and dependency preservation using SQL queries.
+- **Output**: [experiment7.md](Experiment%207/experiment7.md) and [queries.sql](Experiment%207/queries.sql).
+
+### [Experiment 8: Banking Transactions, Partial Failures, and Concurrency Control](Experiment%208/experiment8.md)
+- **Aim**: Implement banking-style transactions using BEGIN, COMMIT, ROLLBACK, and SAVEPOINT. Simulate partial failures. Demonstrate isolation levels and concurrency anomalies using two sessions.
+- **Output**: [experiment8.md](Experiment%208/experiment8.md) and [queries.sql](Experiment%208/queries.sql).
+
+### [Experiment 9: Railway Booking Indexing & Benchmarking (5,000+ Records)](Experiment%209/experiment9.md)
+- **Aim**: Create a Railway Booking table with at least 5,000 records. Benchmark query performance before and after creating single and composite indexes. Use EXPLAIN to compare execution plans.
+- **Output**: [experiment9.md](Experiment%209/experiment9.md) and [queries.sql](Experiment%209/queries.sql).
+
+### [Experiment 10: Query Optimization, EXPLAIN Analysis, and Performance Tuning (10,000+ Rows)](Experiment%2010/experiment10.md)
+- **Aim**: Generate a dataset with at least 10,000 rows. Write five slow queries, analyze using EXPLAIN, optimize using indexing and query rewriting, and compare execution time before and after optimization.
+- **Output**: [experiment10.md](Experiment%2010/experiment10.md) and [queries.sql](Experiment%2010/queries.sql).
