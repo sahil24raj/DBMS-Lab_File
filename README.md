@@ -1,59 +1,118 @@
-# DBMS Lab File
+# Database Management Systems (DBMS) Lab
 
-This repository contains the Database Management Systems (DBMS) Lab experiments.
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-blue.svg?logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Status](https://img.shields.io/badge/Status-Completed%20(10%2F10)-success.svg)]()
+[![Curriculum](https://img.shields.io/badge/Curriculum-CU%20Lucknow-orange.svg)]()
 
-## Experiments List
-
-- **[Experiment 1: Design an ER Diagram for Indian E-Commerce Platform](Experiment%201/experiment1.md)**
-- **[Experiment 2: Convert ER Diagram into Relational Schema](Experiment%202/experiment2.md)**
-- **[Experiment 3: SQL Queries - Selection, Projection, Aggregations, GROUP BY, HAVING, CASE, and JOINs](Experiment%203/experiment3.md)**
-- **[Experiment 4: Joins, Correlated Subqueries, EXISTS, Set Operations, and EXPLAIN](Experiment%204/experiment4.md)**
-- **[Experiment 5: SQL Views and Recursive CTEs for Hierarchy](Experiment%205/experiment5.md)**
-- **[Experiment 6: Stored Procedures, Triggers, and Error Handling](Experiment%206/experiment6.md)**
-- **[Experiment 7: Normalization from UNF to 3NF and BCNF, Lossless Join & Dependency Preservation](Experiment%207/experiment7.md)**
-- **[Experiment 8: Banking Transactions, Partial Failures, and Concurrency Control](Experiment%208/experiment8.md)**
-- **[Experiment 9: Railway Booking Indexing & Benchmarking (5,000+ Records)](Experiment%209/experiment9.md)**
-- **[Experiment 10: Query Optimization, EXPLAIN Analysis, and Performance Tuning (10,000+ Rows)](Experiment%2010/experiment10.md)**
+This repository contains the complete laboratory coursework and practical solutions for the **Database Management Systems (DBMS) Laboratory** course, covering **Experiments 01 through 10** aligned with Course Outcomes (**CO1 to CO5**).
 
 ---
 
-### [Experiment 1: Design an ER Diagram for Indian E-Commerce Platform](Experiment%201/experiment1.md)
-- **Aim**: To design an ER (Entity-Relationship) diagram for an Indian e-commerce platform.
-- **Key entities**: Customer, Product, Order, OrderItem, Seller, Category, Payment, Delivery, Address.
-- **Output**: [experiment1.md](Experiment%201/experiment1.md) and [er_diagram.png](Experiment%201/er_diagram.png).
+## 📑 Master Index of Experiments
 
-### [Experiment 2: Convert ER Diagram into Relational Schema](Experiment%202/experiment2.md)
-- **Aim**: To convert the designed ER diagram into a relational schema and implement it using MySQL.
-- **Output**: [experiment2.md](Experiment%202/experiment2.md) and [schema.sql](Experiment%202/schema.sql).
+| Exp # | Experiment Title | Course Outcome | Documentation | SQL Source |
+| :---: | :--- | :---: | :---: | :---: |
+| **01** | Design an ER Diagram for Indian E-Commerce Platform | **CO1** | [experiment1.md](Experiment%2001/experiment1.md) | [ER Diagram](Experiment%2001/er_diagram.png) |
+| **02** | Convert ER Diagram into Relational Schema | **CO2** | [experiment2.md](Experiment%2002/experiment2.md) | [schema.sql](Experiment%2002/schema.sql) |
+| **03** | SQL Queries: Selection, Projection, Aggregation, GROUP BY, HAVING, CASE & JOINs | **CO3** | [experiment3.md](Experiment%2003/experiment3.md) | [queries.sql](Experiment%2003/queries.sql) |
+| **04** | Joins, Correlated Subqueries, EXISTS, Set Operations, and EXPLAIN | **CO3** | [experiment4.md](Experiment%2004/experiment4.md) | [queries.sql](Experiment%2004/queries.sql) |
+| **05** | SQL Views, View Updatability, and Recursive CTEs for Hierarchy | **CO3** | [experiment5.md](Experiment%2005/experiment5.md) | [queries.sql](Experiment%2005/queries.sql) |
+| **06** | Stored Procedures, Validation Triggers, and Audit Logging | **CO3** | [experiment6.md](Experiment%2006/experiment6.md) | [queries.sql](Experiment%2006/queries.sql) |
+| **07** | Normalization (UNF to 3NF & BCNF), Lossless Join & Dependency Preservation | **CO4** | [experiment7.md](Experiment%2007/experiment7.md) | [queries.sql](Experiment%2007/queries.sql) |
+| **08** | Banking Transactions (ACID), Savepoints, and Concurrency Isolation Anomalies | **CO4** | [experiment8.md](Experiment%2008/experiment8.md) | [queries.sql](Experiment%2008/queries.sql) |
+| **09** | Railway Booking System Indexing & Query Benchmarking (5,000+ Records) | **CO5** | [experiment9.md](Experiment%2009/experiment9.md) | [queries.sql](Experiment%2009/queries.sql) |
+| **10** | Query Performance Tuning, EXPLAIN Analysis, and Optimization (10,000+ Rows) | **CO5** | [experiment10.md](Experiment%2010/experiment10.md) | [queries.sql](Experiment%2010/queries.sql) |
 
-### [Experiment 3: SQL Queries - Selection, Projection, Aggregations, GROUP BY, HAVING, CASE, and JOINs](Experiment%203/experiment3.md)
-- **Aim**: To create an Employee–Department–Project relational database, insert at least 30 employees across 5 departments and 8 projects, and demonstrate SQL queries using Selection, Projection, Aggregate Functions, GROUP BY, HAVING, CASE expressions, and ORDER BY.
-- **Output**: [experiment3.md](Experiment%203/experiment3.md) and [queries.sql](Experiment%203/queries.sql).
+---
 
-### [Experiment 4: Joins, Correlated Subqueries, EXISTS, Set Operations, and EXPLAIN](Experiment%204/experiment4.md)
-- **Aim**: Using the Employee schema, write and execute SQL queries with INNER JOIN, LEFT JOIN, self-join, 3-way join, correlated subqueries, EXISTS, and simulated INTERSECT and EXCEPT. Compare the execution plans of selected queries using EXPLAIN.
-- **Output**: [experiment4.md](Experiment%204/experiment4.md) and [queries.sql](Experiment%204/queries.sql).
+## 🔬 Detailed Experiment Descriptions
 
-### [Experiment 5: SQL Views and Recursive CTEs for Hierarchy](Experiment%205/experiment5.md)
-- **Aim**: To create SQL views for department salary summary and employee hierarchy, test the updatability of views, and implement a recursive CTE to display reporting chains.
-- **Output**: [experiment5.md](Experiment%205/experiment5.md) and [queries.sql](Experiment%205/queries.sql).
+### [Experiment 01: Design an ER Diagram for Indian E-Commerce Platform](Experiment%2001/experiment1.md)
+- **Course Outcome**: `CO1`
+- **Aim**: To design a comprehensive Entity-Relationship (ER) diagram for an Indian e-commerce platform incorporating real-world attributes and multi-entity relationships.
+- **Key Entities**: Customer, Product, Order, OrderItem, Seller, Category, Payment, Delivery, Address.
+- **Deliverables**: [experiment1.md](Experiment%2001/experiment1.md) and [er_diagram.png](Experiment%2001/er_diagram.png).
 
-### [Experiment 6: Stored Procedures, Triggers, and Error Handling](Experiment%206/experiment6.md)
-- **Aim**: To create a stored procedure transfer_employee(emp_id, new_dept_id) with validation and error handling, implement triggers for salary validation and audit logging, and test important edge cases.
-- **Output**: [experiment6.md](Experiment%206/experiment6.md) and [queries.sql](Experiment%206/queries.sql).
+---
 
-### [Experiment 7: Normalization from UNF to 3NF and BCNF, Lossless Join & Dependency Preservation](Experiment%207/experiment7.md)
-- **Aim**: Given a denormalized Sales table, identify functional dependencies and normalize step-by-step from UNF to 3NF and BCNF. Verify lossless join and dependency preservation using SQL queries.
-- **Output**: [experiment7.md](Experiment%207/experiment7.md) and [queries.sql](Experiment%207/queries.sql).
+### [Experiment 02: Convert ER Diagram into Relational Schema](Experiment%2002/experiment2.md)
+- **Course Outcome**: `CO2`
+- **Aim**: To convert the conceptual ER diagram into a fully normalized relational schema, enforcing primary keys, foreign keys, cardinality rules, and check constraints in MySQL.
+- **Deliverables**: [experiment2.md](Experiment%2002/experiment2.md) and [schema.sql](Experiment%2002/schema.sql).
 
-### [Experiment 8: Banking Transactions, Partial Failures, and Concurrency Control](Experiment%208/experiment8.md)
-- **Aim**: Implement banking-style transactions using BEGIN, COMMIT, ROLLBACK, and SAVEPOINT. Simulate partial failures. Demonstrate isolation levels and concurrency anomalies using two sessions.
-- **Output**: [experiment8.md](Experiment%208/experiment8.md) and [queries.sql](Experiment%208/queries.sql).
+---
 
-### [Experiment 9: Railway Booking Indexing & Benchmarking (5,000+ Records)](Experiment%209/experiment9.md)
-- **Aim**: Create a Railway Booking table with at least 5,000 records. Benchmark query performance before and after creating single and composite indexes. Use EXPLAIN to compare execution plans.
-- **Output**: [experiment9.md](Experiment%209/experiment9.md) and [queries.sql](Experiment%209/queries.sql).
+### [Experiment 03: SQL Queries - Selection, Projection, Aggregations, GROUP BY, HAVING, CASE, and JOINs](Experiment%2003/experiment3.md)
+- **Course Outcome**: `CO3`
+- **Aim**: To create an Employee–Department–Project database (30 employees, 5 departments, 8 projects) and execute queries using Selection, Projection, Aggregate Functions (`COUNT`, `AVG`, `SUM`, `MIN`, `MAX`), `GROUP BY`, `HAVING`, conditional `CASE` expressions, and multi-table joins.
+- **Deliverables**: [experiment3.md](Experiment%2003/experiment3.md) and [queries.sql](Experiment%2003/queries.sql).
+
+---
+
+### [Experiment 04: Joins, Correlated Subqueries, EXISTS, Set Operations, and EXPLAIN](Experiment%2004/experiment4.md)
+- **Course Outcome**: `CO3`
+- **Aim**: To formulate advanced queries using `INNER JOIN`, `LEFT JOIN`, self-joins, 3-way joins, correlated subqueries, `EXISTS`, and simulated set operations (`INTERSECT` and `EXCEPT`). Query execution plans are analyzed and compared using `EXPLAIN`.
+- **Deliverables**: [experiment4.md](Experiment%2004/experiment4.md) and [queries.sql](Experiment%2004/queries.sql).
+
+---
+
+### [Experiment 05: SQL Views and Recursive CTEs for Hierarchy](Experiment%2005/experiment5.md)
+- **Course Outcome**: `CO3`
+- **Aim**: To create SQL views for department salary summaries and employee reporting hierarchies, examine conditions governing view updatability, and implement a recursive Common Table Expression (CTE) to trace multi-level manager reporting chains.
+- **Deliverables**: [experiment5.md](Experiment%2005/experiment5.md) and [queries.sql](Experiment%2005/queries.sql).
+
+---
+
+### [Experiment 06: Stored Procedures, Triggers, and Error Handling](Experiment%206/experiment6.md)
+- **Course Outcome**: `CO3`
+- **Aim**: To develop a stored procedure `transfer_employee(emp_id, new_dept_id)` with validation and transaction rollback, configure `BEFORE` triggers for salary validation (enforcing bounds ₹30,000–₹1,50,000), and `AFTER UPDATE` triggers for audit logging.
+- **Deliverables**: [experiment6.md](Experiment%2006/experiment6.md) and [queries.sql](Experiment%2006/queries.sql).
+
+---
+
+### [Experiment 07: Normalization from UNF to 3NF and BCNF, Lossless Join & Dependency Preservation](Experiment%2007/experiment7.md)
+- **Course Outcome**: `CO4`
+- **Aim**: Given a denormalized retail Sales table, identify non-trivial functional dependencies and candidate keys, normalize step-by-step from UNF to 1NF, 2NF, 3NF, and BCNF, and verify both **Lossless Join** decomposition and **Dependency Preservation** using SQL verification queries.
+- **Deliverables**: [experiment7.md](Experiment%2007/experiment7.md) and [queries.sql](Experiment%2007/queries.sql).
+
+---
+
+### [Experiment 08: Banking Transactions, Partial Failures, and Concurrency Control](Experiment%2008/experiment8.md)
+- **Course Outcome**: `CO4`
+- **Aim**: To implement banking transactions using `START TRANSACTION`, `COMMIT`, `ROLLBACK`, and `SAVEPOINT` for partial failure handling. Demonstrate transaction isolation levels (`READ UNCOMMITTED`, `READ COMMITTED`, `REPEATABLE READ`, `SERIALIZABLE`) and concurrency anomalies (**Dirty Read**, **Non-Repeatable Read**, **Phantom Read**, **Lost Update**) across two client sessions.
+- **Deliverables**: [experiment8.md](Experiment%2008/experiment8.md) and [queries.sql](Experiment%2008/queries.sql).
+
+---
+
+### [Experiment 09: Railway Booking Indexing & Benchmarking (5,000+ Records)](Experiment%2009/experiment9.md)
+- **Course Outcome**: `CO5`
+- **Aim**: To design a Railway Ticket Booking system, populate at least 5,000 records via automated stored procedures, benchmark query execution plans using `EXPLAIN` before and after creating single and composite B-Tree indexes, and quantify execution speedup factors.
+- **Deliverables**: [experiment9.md](Experiment%2009/experiment9.md) and [queries.sql](Experiment%2009/queries.sql).
+
+---
 
 ### [Experiment 10: Query Optimization, EXPLAIN Analysis, and Performance Tuning (10,000+ Rows)](Experiment%2010/experiment10.md)
-- **Aim**: Generate a dataset with at least 10,000 rows. Write five slow queries, analyze using EXPLAIN, optimize using indexing and query rewriting, and compare execution time before and after optimization.
-- **Output**: [experiment10.md](Experiment%2010/experiment10.md) and [queries.sql](Experiment%2010/queries.sql).
+- **Course Outcome**: `CO5`
+- **Aim**: To generate an e-commerce dataset containing over 10,000 records, write 5 representative slow queries representing database anti-patterns (non-SARGable predicates, leading wildcards, correlated scalar subqueries, deep offset pagination, unindexed multi-table joins), optimize each query through indexing and query rewriting, and compare execution times using `EXPLAIN`.
+- **Deliverables**: [experiment10.md](Experiment%2010/experiment10.md) and [queries.sql](Experiment%2010/queries.sql).
+
+---
+
+## 🛠️ Environment & Prerequisites
+
+- **RDBMS**: MySQL Server 8.0+
+- **Interface**: MySQL Workbench / MySQL CLI Shell
+- **Execution**:
+  ```bash
+  # Execute any experiment's SQL script
+  mysql -u root -p < "Experiment 07/queries.sql"
+  ```
+
+---
+
+## 📚 Textbooks & Reference Books
+
+1. **Elmasri, R., & Navathe, S. B.** — *Fundamentals of Database Systems*, Pearson.
+2. **Ramakrishnan, R., & Gehrke, J.** — *Database Management Systems*, McGraw-Hill.
+3. **Date, C. J.** — *An Introduction to Database Systems*, Pearson.
+4. **Garcia-Molina, H., Ullman, J. D., & Widom, J.** — *Database Systems: The Complete Book*, Pearson.
